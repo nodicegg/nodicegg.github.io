@@ -14,6 +14,8 @@ let questProgress;
 let lineStage;
 let towerProgress;
 let towerUnlocked;
+let fenProgress;
+let fenUnlocked;
 function applyQuestFilter() {
   const entry = document.querySelector('#quest-entry');
   const empty = document.querySelector('#quest-empty');
@@ -23,7 +25,9 @@ function applyQuestFilter() {
   if (line) line.hidden = questProgress !== 4 || lineStage == null || showCompleted !== (lineStage === 3);
   const tower = document.querySelector('#watchtower-entry');
   if (tower) tower.hidden = !towerUnlocked || showCompleted !== (towerProgress === 4);
-  empty.hidden = !entry.hidden || Boolean(line && !line.hidden) || Boolean(tower && !tower.hidden);
+  const fen = document.querySelector('#cinderfen-entry');
+  if (fen) fen.hidden = !fenUnlocked || showCompleted !== (fenProgress === 4);
+  empty.hidden = [entry, line, tower, fen].some(card => card && !card.hidden);
   empty.textContent = !empty.hidden ? (showCompleted ? 'No completed quests yet.' : 'No open quests.') : '';
 }
 questFilter?.addEventListener('change', applyQuestFilter);
@@ -115,6 +119,16 @@ function renderHero(hero) {
       : towerProgress === 3 ? 'Claim your reward with /emberwolf quests.'
       : towerProgress == null ? 'Accept the quest with /emberwolf quests.'
       : 'Use /emberwolf hunt and choose Old Watchtower.';
+  }
+  fenUnlocked = hero.level >= 5;
+  fenProgress = hero.cinderfen_progress;
+  const fenCount = document.querySelector('#cinderfen-count');
+  if (fenCount) {
+    fenCount.textContent = Math.min(fenProgress ?? 0, 3) + '/3';
+    document.querySelector('#cinderfen-next').textContent = fenProgress === 4 ? 'Reward claimed.'
+      : fenProgress === 3 ? 'Claim your reward with /emberwolf quests.'
+      : fenProgress == null ? 'Accept the quest with /emberwolf quests.'
+      : 'Use /emberwolf hunt and choose Cinderfen.';
   }
   renderQuest(hero.ashwood_progress);
   sheet.hidden = false;
