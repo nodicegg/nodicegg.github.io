@@ -37,12 +37,25 @@ function renderQuest(progress) {
   journal.hidden = false;
 }
 
+// Match the class bases and damage formula in the Discord game's combat rules.
+const combatBases = new Map([
+  ['warden', { power: 8, guard: 4 }],
+  ['ranger', { power: 11, guard: 2 }],
+  ['mystic', { power: 13, guard: 1 }],
+]);
+
+function combatStats(hero) {
+  const base = combatBases.get(hero.class);
+  if (!base) return { Power: 'Unavailable', Guard: 'Unavailable' };
+  return { Power: base.power + (hero.level - 1) * 2 + hero.gear * 3, Guard: base.guard };
+}
+
 function renderHero(hero) {
   document.querySelector('#hero-name').textContent = hero.hero;
   document.querySelector('#calling').textContent = 'Level ' + hero.level + ' ' + hero.class;
   stats.replaceChildren();
   for (const [label, value] of Object.entries({
-    XP: hero.xp, Gold: hero.gold, Gear: '+' + hero.gear,
+    ...combatStats(hero), XP: hero.xp, Gold: hero.gold, Gear: '+' + hero.gear,
   })) {
     const group = document.createElement('div');
     const term = document.createElement('dt');
