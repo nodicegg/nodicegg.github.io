@@ -1,3 +1,4 @@
+import { clearEquipment, renderEquipment } from './profile-equipment.js';
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/+esm';
 
 const client = createClient('https://krkoydzjzrutdgxhaplk.supabase.co', 'sb_publishable_CRUhmi4nlIgzeYsjaPtCYw_dGJpApTH', {
@@ -125,10 +126,22 @@ function renderHero(hero) {
   sheet.hidden = false;
 }
 
+const heroViews = [...document.querySelectorAll('[data-hero-view]')];
+function showHeroView(view) {
+  for (const button of heroViews) {
+    const selected = button.dataset.heroView === view;
+    button.setAttribute('aria-pressed', String(selected));
+    document.getElementById(button.dataset.heroView).hidden = !selected;
+  }
+}
+for (const button of heroViews) button.addEventListener('click', () => showHeroView(button.dataset.heroView));
+
 let renderVersion = 0;
 async function refresh(session) {
   const version = ++renderVersion;
   sheet.hidden = true;
+  clearEquipment();
+  showHeroView('journal-view');
   const journal = document.querySelector('#journal');
   if (journal) {
     journal.hidden = true;
@@ -151,12 +164,16 @@ async function refresh(session) {
     return;
   }
   status.textContent = 'Loading your hero…';
-  const { data, error } = await client.rpc('emberwolf_my_hero').maybeSingle();
+  const [{ data, error }, bag] = await Promise.all([
+    client.rpc('emberwolf_my_hero').maybeSingle(),
+    client.rpc('emberwolf_my_inventory').maybeSingle(),
+  ]);
   if (version !== renderVersion) return;
   if (error) status.textContent = 'Could not load your hero. Refresh to try again.';
   else if (!data) status.textContent = 'No hero is linked to this Discord account. Use /emberwolf begin in NoDiceGG.';
   else {
     renderHero(data);
+    renderEquipment(data, bag.error ? null : bag.data);
     status.textContent = '';
   }
 }
