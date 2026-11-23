@@ -1,4 +1,4 @@
-import { clearEquipment, renderEquipment } from './profile-equipment.js';
+import { clearEquipment, rarityColor, renderEquipment } from './profile-equipment.js?v=rarity';
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/+esm';
 
 const client = createClient('https://krkoydzjzrutdgxhaplk.supabase.co', 'sb_publishable_CRUhmi4nlIgzeYsjaPtCYw_dGJpApTH', {
@@ -84,6 +84,7 @@ function renderHero(hero) {
     const detail = document.createElement('dd');
     term.textContent = label;
     detail.textContent = value;
+    if (label === 'Trinket' && hero.charm_owned) detail.style.color = rarityColor('Rare');
     group.append(term, detail);
     stats.append(group);
   }
