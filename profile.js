@@ -63,7 +63,7 @@ function renderQuest(progress) {
 }
 
 function renderHero(hero) {
-  for (const [id, value, max] of [['hero-hp', hero.hp, 40], ['hero-mp', hero.mp, 20]]) {
+  for (const [id, value, max] of [['hero-hp', hero.hp, hero.max_hp ?? 40], ['hero-mp', hero.mp, hero.max_mp ?? 20]]) {
     const element = document.getElementById(id);
     if (element) element.textContent = value == null ? 'Unavailable' : value + '/' + max;
   }
@@ -71,6 +71,10 @@ function renderHero(hero) {
   document.querySelector('#calling').textContent = 'Level ' + hero.level + ' ' + hero.class;
   stats.replaceChildren();
   for (const [label, value] of Object.entries({
+    Strength: hero.strength ?? '—', Agility: hero.agility ?? '—', Intellect: hero.intellect ?? '—',
+    Stamina: hero.stamina ?? '—', Spirit: hero.spirit ?? '—',
+    'Raid crit': hero.crit_chance == null ? '—' : hero.crit_chance + '%',
+    'Mana recovery': hero.spirit == null ? '—' : hero.spirit + ' MP/min',
     Power: hero.power ?? 'Unavailable', Guard: hero.guard ?? 'Unavailable', XP: hero.xp, Gold: hero.gold, Gear: '+' + hero.gear,
     Trinket: hero.charm_equipped ? 'Cinderfang Charm (+1 Power)' : hero.charm_owned ? 'Cinderfang Charm (in pack)' : 'Empty',
   })) {
