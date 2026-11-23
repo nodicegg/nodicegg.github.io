@@ -9,6 +9,18 @@ const signOut = document.querySelector('#signout');
 const sheet = document.querySelector('#sheet');
 const stats = document.querySelector('#stats');
 
+const questFilter = document.querySelector('#quest-filter');
+let questProgress;
+function applyQuestFilter() {
+  const entry = document.querySelector('#quest-entry');
+  const empty = document.querySelector('#quest-empty');
+  const showCompleted = questFilter.value === 'completed';
+  entry.hidden = showCompleted !== (questProgress === 4);
+  empty.hidden = !entry.hidden;
+  empty.textContent = entry.hidden ? (showCompleted ? 'No completed quests yet.' : 'No open quests.') : '';
+}
+questFilter?.addEventListener('change', applyQuestFilter);
+
 function renderQuest(progress) {
   const journal = document.querySelector('#journal');
   if (!journal) return;
@@ -34,6 +46,8 @@ function renderQuest(progress) {
   document.querySelector('#quest-count').textContent = kills + '/3';
   document.querySelector('#quest-next').textContent = next;
   document.querySelector('#quest-command').textContent = command;
+  questProgress = progress;
+  if (questFilter) applyQuestFilter();
   journal.hidden = false;
 }
 
@@ -51,6 +65,10 @@ function combatStats(hero) {
 }
 
 function renderHero(hero) {
+  for (const [id, value, max] of [['hero-hp', hero.hp, 40], ['hero-mp', hero.mp, 20]]) {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value == null ? 'Unavailable' : value + '/' + max;
+  }
   document.querySelector('#hero-name').textContent = hero.hero;
   document.querySelector('#calling').textContent = 'Level ' + hero.level + ' ' + hero.class;
   stats.replaceChildren();
@@ -78,6 +96,11 @@ async function refresh(session) {
     journal.hidden = true;
     for (const id of ['quest-state', 'quest-count', 'quest-next', 'quest-command']) document.getElementById(id).textContent = '';
     document.getElementById('quest-progress').value = 0;
+  }
+  if (questFilter) questFilter.value = 'open';
+  for (const id of ['hero-hp', 'hero-mp']) {
+    const resource = document.getElementById(id);
+    if (resource) resource.textContent = '';
   }
   stats.replaceChildren();
   document.querySelector('#hero-name').textContent = '';
