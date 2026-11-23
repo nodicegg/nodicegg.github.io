@@ -12,6 +12,8 @@ const stats = document.querySelector('#stats');
 const questFilter = document.querySelector('#quest-filter');
 let questProgress;
 let lineStage;
+let towerProgress;
+let towerUnlocked;
 function applyQuestFilter() {
   const entry = document.querySelector('#quest-entry');
   const empty = document.querySelector('#quest-empty');
@@ -19,7 +21,9 @@ function applyQuestFilter() {
   entry.hidden = showCompleted !== (questProgress === 4);
   const line = document.querySelector('#ashgate-entry');
   if (line) line.hidden = questProgress !== 4 || lineStage == null || showCompleted !== (lineStage === 3);
-  empty.hidden = !entry.hidden || Boolean(line && !line.hidden);
+  const tower = document.querySelector('#watchtower-entry');
+  if (tower) tower.hidden = !towerUnlocked || showCompleted !== (towerProgress === 4);
+  empty.hidden = !entry.hidden || Boolean(line && !line.hidden) || Boolean(tower && !tower.hidden);
   empty.textContent = !empty.hidden ? (showCompleted ? 'No completed quests yet.' : 'No open quests.') : '';
 }
 questFilter?.addEventListener('change', applyQuestFilter);
@@ -101,6 +105,16 @@ function renderHero(hero) {
       : hero.gear < 1 ? 'Use /emberwolf forge to upgrade your gear.'
       : lineStage === 0 ? 'Use /emberwolf rest to recover at camp.'
       : 'Use /emberwolf raid to strike Cindermaw.';
+  }
+  towerUnlocked = hero.level >= 3;
+  towerProgress = hero.watchtower_progress;
+  const towerCount = document.querySelector('#watchtower-count');
+  if (towerCount) {
+    towerCount.textContent = Math.min(towerProgress ?? 0, 3) + '/3';
+    document.querySelector('#watchtower-next').textContent = towerProgress === 4 ? 'Reward claimed.'
+      : towerProgress === 3 ? 'Claim your reward with /emberwolf quests.'
+      : towerProgress == null ? 'Accept the quest with /emberwolf quests.'
+      : 'Use /emberwolf hunt and choose Old Watchtower.';
   }
   renderQuest(hero.ashwood_progress);
   sheet.hidden = false;
