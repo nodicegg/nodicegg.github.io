@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>My Hero · Emberwolf</title>
   <link rel="stylesheet" href="./style.css?v=emberforms">
-  <link rel="stylesheet" href="./profile.css?v=centered-980">
-  <script type="module" src="./profile.js?v=journal"></script>
+  <link rel="stylesheet" href="./profile.css?v=hero-sidebar">
+  <script type="module" src="./profile.js?v=hero-sidebar"></script>
 </head>
 <body>
   <header class="site-header">
@@ -18,9 +18,16 @@
     <p id="status" class="lede" role="status">Checking your Discord session…</p>
     <button id="signin" class="play" hidden>Sign in with Discord</button>
     <div class="hero-sheet" id="sheet" hidden>
-      <h2 id="hero-name"></h2>
-      <p id="calling" class="kicker"></p>
-      <dl id="stats"></dl>
+      <aside class="hero-sidebar" aria-labelledby="hero-name">
+        <h2 id="hero-name"></h2>
+        <p id="calling" class="kicker"></p>
+        <dl class="hero-resources" aria-label="Health and mana">
+          <div><dt>HP</dt><dd>Not tracked</dd></div>
+          <div><dt>MP</dt><dd>Not tracked</dd></div>
+        </dl>
+        <h3>Character stats</h3>
+        <dl id="stats"></dl>
+      </aside>
       <section class="quest-journal" id="journal" aria-labelledby="quest-title" hidden>
         <p class="kicker">Quest journal</p>
         <h3 id="quest-title">Trouble in the Ashwood</h3>
