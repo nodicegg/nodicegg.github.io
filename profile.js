@@ -64,7 +64,7 @@ const combatBases = new Map([
 function combatStats(hero) {
   const base = combatBases.get(hero.class);
   if (!base) return { Power: 'Unavailable', Guard: 'Unavailable' };
-  return { Power: base.power + (hero.level - 1) * 2 + hero.gear * 3, Guard: base.guard };
+  return { Power: base.power + (hero.level - 1) * 2 + hero.gear * 3 + Number(hero.charm_equipped === true), Guard: base.guard };
 }
 
 function renderHero(hero) {
@@ -77,6 +77,7 @@ function renderHero(hero) {
   stats.replaceChildren();
   for (const [label, value] of Object.entries({
     ...combatStats(hero), XP: hero.xp, Gold: hero.gold, Gear: '+' + hero.gear,
+    Trinket: hero.charm_equipped ? 'Cinderfang Charm (+1 Power)' : hero.charm_owned ? 'Cinderfang Charm (in pack)' : 'Empty',
   })) {
     const group = document.createElement('div');
     const term = document.createElement('dt');
