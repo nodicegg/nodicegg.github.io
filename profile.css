@@ -48,3 +48,9 @@
 @media (max-width: 680px) {
   .hero-sheet:not([hidden]) { grid-template-columns: minmax(0, 1fr); }
 }
+
+#hero-hp { color: #ff9b86; font-weight: 700; }
+#hero-mp { color: #b4b8ff; font-weight: 700; }
+#quest-filter { width: 100%; padding: .55rem; border: 1px solid var(--line); border-radius: .3rem; font: inherit; }
+label[for="quest-filter"] { margin: .85rem 0 .35rem; }
+#quest-entry { margin-top: 1.25rem; }
