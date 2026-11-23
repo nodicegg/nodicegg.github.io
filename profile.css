@@ -1,8 +1,8 @@
-.profile { padding-block: clamp(3rem, 8vw, 7rem); }
+.profile { width: calc(100% - clamp(2rem, 8vw, 9rem)); padding-block: clamp(3rem, 8vw, 7rem); }
 .profile h1 { font-size: clamp(2.6rem, 8vw, 5.8rem); }
 .profile button { font: inherit; cursor: pointer; }
 .profile button[hidden], .hero-sheet[hidden] { display: none; }
-.hero-sheet { max-width: 46rem; padding: clamp(1.3rem, 4vw, 2.5rem); margin-block: 2rem; background: linear-gradient(145deg, #302017, #160f0d); border: 1px solid var(--line); border-radius: .4rem; }
+.hero-sheet { padding: clamp(1.3rem, 4vw, 2.5rem); margin-block: 2rem; background: linear-gradient(145deg, #302017, #160f0d); border: 1px solid var(--line); border-radius: .4rem; }
 .hero-sheet .kicker { margin-block: .85rem 1.5rem; }
 .hero-sheet dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 1rem; margin: 0; }
 .hero-sheet dl div { padding: .9rem; border-top: 1px solid var(--line); }
