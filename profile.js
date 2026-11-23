@@ -62,19 +62,6 @@ function renderQuest(progress) {
   journal.hidden = false;
 }
 
-// Match the class bases and damage formula in the Discord game's combat rules.
-const combatBases = new Map([
-  ['warden', { power: 8, guard: 4 }],
-  ['ranger', { power: 11, guard: 2 }],
-  ['mystic', { power: 13, guard: 1 }],
-]);
-
-function combatStats(hero) {
-  const base = combatBases.get(hero.class);
-  if (!base) return { Power: 'Unavailable', Guard: 'Unavailable' };
-  return { Power: base.power + (hero.level - 1) * 2 + hero.gear * 3 + Number(hero.charm_equipped === true), Guard: base.guard };
-}
-
 function renderHero(hero) {
   for (const [id, value, max] of [['hero-hp', hero.hp, 40], ['hero-mp', hero.mp, 20]]) {
     const element = document.getElementById(id);
@@ -84,7 +71,7 @@ function renderHero(hero) {
   document.querySelector('#calling').textContent = 'Level ' + hero.level + ' ' + hero.class;
   stats.replaceChildren();
   for (const [label, value] of Object.entries({
-    ...combatStats(hero), XP: hero.xp, Gold: hero.gold, Gear: '+' + hero.gear,
+    Power: hero.power ?? 'Unavailable', Guard: hero.guard ?? 'Unavailable', XP: hero.xp, Gold: hero.gold, Gear: '+' + hero.gear,
     Trinket: hero.charm_equipped ? 'Cinderfang Charm (+1 Power)' : hero.charm_owned ? 'Cinderfang Charm (in pack)' : 'Empty',
   })) {
     const group = document.createElement('div');
