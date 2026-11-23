@@ -68,3 +68,9 @@
 .quest-next-panel h5 { font-size: .95rem; margin: 0; }
 #quest-next { margin: .4rem 0 .65rem; }
 .quest-discord { display: block; width: fit-content; margin-top: .75rem; }
+
+.hero-sheet { background:#20232d; border-radius:.85rem; }
+.hero-sidebar,#quest-entry,#quest-empty,.journal-filters { background:var(--panel); border-radius:.7rem; }
+.journal-filters input:checked + span { background:#414881; color:#f2f2ff; }
+.quest-next-panel { background:var(--raised); border-left-color:#7c87ff; border-radius:.4rem; }
+.quest-reward strong { background:#3f3541; }
