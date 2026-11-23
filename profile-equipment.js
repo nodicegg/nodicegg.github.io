@@ -5,7 +5,8 @@ export function rarityColor(rarity) {
   return tier ? '#' + tier.color.toString(16).padStart(6,'0') : '';
 }
 const bonus = { Cloth: [1,0], Leather: [0,1], Mail: [0,2], Plate: [0,3] };
-const stats = id => id === 'cinderfang' ? [1,0] : bonus[gearItems[id]?.armorType] ?? [0,0];
+const weaponBonuses = { iron_sword: [2,0], wood_buckler: [0,1], ash_staff: [3,0] };
+const stats = id => id === 'cinderfang' ? [1,0] : weaponBonuses[id] ?? bonus[gearItems[id]?.armorType] ?? [0,0];
 const signed = n => n > 0 ? '+' + n : String(n);
 const delta = (p,g) => p || g ? [p ? signed(p) + ' Power' : '', g ? signed(g) + ' Guard' : ''].filter(Boolean).join(' · ') : 'No stat change';
 const details = id => {
