@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>My Hero · Emberwolf</title>
   <link rel="stylesheet" href="./style.css?v=emberforms">
-  <link rel="stylesheet" href="./profile.css?v=hero-sidebar">
-  <script type="module" src="./profile.js?v=hero-sidebar"></script>
+  <link rel="stylesheet" href="./profile.css?v=resources">
+  <script type="module" src="./profile.js?v=resources"></script>
 </head>
 <body>
   <header class="site-header">
@@ -22,14 +22,18 @@
         <h2 id="hero-name"></h2>
         <p id="calling" class="kicker"></p>
         <dl class="hero-resources" aria-label="Health and mana">
-          <div><dt>HP</dt><dd>Not tracked</dd></div>
-          <div><dt>MP</dt><dd>Not tracked</dd></div>
+          <div><dt>HP</dt><dd id="hero-hp"></dd></div>
+          <div><dt>MP</dt><dd id="hero-mp"></dd></div>
         </dl>
         <h3>Character stats</h3>
         <dl id="stats"></dl>
       </aside>
       <section class="quest-journal" id="journal" aria-labelledby="quest-title" hidden>
-        <p class="kicker">Quest journal</p>
+        <h3>Quest journal</h3>
+        <label for="quest-filter">Show quests</label>
+        <select id="quest-filter"><option value="open">Available and in progress</option><option value="completed">Completed</option></select>
+        <p id="quest-empty" role="status" hidden></p>
+        <div id="quest-entry">
         <h3 id="quest-title">Trouble in the Ashwood</h3>
         <p id="quest-state"></p>
         <label for="quest-progress">Ashwood Stalkers defeated <strong id="quest-count"></strong></label>
@@ -38,6 +42,7 @@
         <p id="quest-next"></p>
         <code id="quest-command"></code>
         <a class="text-link quest-discord" href="https://discord.com/channels/1289753596233126010">Open NoDiceGG in Discord</a>
+        </div>
       </section>
     </div>
     <button id="signout" class="text-link" hidden>Sign out</button>
