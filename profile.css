@@ -1,4 +1,4 @@
-.profile { width: calc(100% - clamp(2rem, 8vw, 9rem)); padding-block: clamp(3rem, 8vw, 7rem); }
+.profile { width: min(980px, calc(100% - 2rem)); margin-inline: auto; padding-block: clamp(3rem, 8vw, 7rem); }
 .profile h1 { font-size: clamp(2.6rem, 8vw, 5.8rem); }
 .profile button { font: inherit; cursor: pointer; }
 .profile button[hidden], .hero-sheet[hidden] { display: none; }
