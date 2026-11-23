@@ -14,7 +14,7 @@ let questProgress;
 function applyQuestFilter() {
   const entry = document.querySelector('#quest-entry');
   const empty = document.querySelector('#quest-empty');
-  const showCompleted = questFilter.value === 'completed';
+  const showCompleted = (questFilter.querySelector('input:checked')?.value ?? questFilter.value) === 'completed';
   entry.hidden = showCompleted !== (questProgress === 4);
   empty.hidden = !entry.hidden;
   empty.textContent = entry.hidden ? (showCompleted ? 'No completed quests yet.' : 'No open quests.') : '';
@@ -97,7 +97,8 @@ async function refresh(session) {
     for (const id of ['quest-state', 'quest-count', 'quest-next', 'quest-command']) document.getElementById(id).textContent = '';
     document.getElementById('quest-progress').value = 0;
   }
-  if (questFilter) questFilter.value = 'open';
+  if (questFilter?.matches('fieldset')) questFilter.querySelector('[value="open"]').checked = true;
+  else if (questFilter) questFilter.value = 'open';
   for (const id of ['hero-hp', 'hero-mp']) {
     const resource = document.getElementById(id);
     if (resource) resource.textContent = '';
