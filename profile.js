@@ -11,13 +11,16 @@ const stats = document.querySelector('#stats');
 
 const questFilter = document.querySelector('#quest-filter');
 let questProgress;
+let lineStage;
 function applyQuestFilter() {
   const entry = document.querySelector('#quest-entry');
   const empty = document.querySelector('#quest-empty');
   const showCompleted = (questFilter.querySelector('input:checked')?.value ?? questFilter.value) === 'completed';
   entry.hidden = showCompleted !== (questProgress === 4);
-  empty.hidden = !entry.hidden;
-  empty.textContent = entry.hidden ? (showCompleted ? 'No completed quests yet.' : 'No open quests.') : '';
+  const line = document.querySelector('#ashgate-entry');
+  if (line) line.hidden = questProgress !== 4 || lineStage == null || showCompleted !== (lineStage === 3);
+  empty.hidden = !entry.hidden || Boolean(line && !line.hidden);
+  empty.textContent = !empty.hidden ? (showCompleted ? 'No completed quests yet.' : 'No open quests.') : '';
 }
 questFilter?.addEventListener('change', applyQuestFilter);
 
@@ -82,6 +85,21 @@ function renderHero(hero) {
     detail.textContent = value;
     group.append(term, detail);
     stats.append(group);
+  }
+  lineStage = hero.ashgate_stage;
+  const checklist = document.querySelector('#ashgate-objectives');
+  if (checklist) {
+    checklist.replaceChildren();
+    for (const [done, label] of [[hero.gear >= 1, 'Upgrade gear to +1'], [lineStage >= 1, 'Rest at camp after gearing up'], [lineStage >= 2, 'Land a strike on Cindermaw']]) {
+      const item = document.createElement('li');
+      item.textContent = (done ? 'Done · ' : 'To do · ') + label;
+      checklist.append(item);
+    }
+    document.querySelector('#ashgate-next').textContent = lineStage === 3 ? 'Reward claimed.'
+      : lineStage === 2 ? 'Use /emberwolf quests to claim your reward.'
+      : hero.gear < 1 ? 'Use /emberwolf forge to upgrade your gear.'
+      : lineStage === 0 ? 'Use /emberwolf rest to recover at camp.'
+      : 'Use /emberwolf raid to strike Cindermaw.';
   }
   renderQuest(hero.ashwood_progress);
   sheet.hidden = false;
