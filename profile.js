@@ -9,15 +9,40 @@ const signOut = document.querySelector('#signout');
 const sheet = document.querySelector('#sheet');
 const stats = document.querySelector('#stats');
 
+function renderQuest(progress) {
+  const journal = document.querySelector('#journal');
+  if (!journal) return;
+  const kills = Math.min(progress ?? 0, 3);
+  let state = 'In progress';
+  let next = 'Hunt an Ashwood Stalker in Discord. Each successful hunt advances the quest.';
+  let command = '/emberwolf hunt';
+  if (progress == null) {
+    state = 'Available';
+    next = 'Open the quest board and accept the quartermaster’s contract.';
+    command = '/emberwolf quests';
+  } else if (progress === 3) {
+    state = 'Ready to claim';
+    next = 'Open the quest board and choose Claim Reward.';
+    command = '/emberwolf quests';
+  } else if (progress === 4) {
+    state = 'Reward claimed';
+    next = 'Visit the forge to check your next gear upgrade.';
+    command = '/emberwolf forge';
+  }
+  document.querySelector('#quest-state').textContent = state;
+  document.querySelector('#quest-progress').value = kills;
+  document.querySelector('#quest-count').textContent = kills + '/3';
+  document.querySelector('#quest-next').textContent = next;
+  document.querySelector('#quest-command').textContent = command;
+  journal.hidden = false;
+}
+
 function renderHero(hero) {
   document.querySelector('#hero-name').textContent = hero.hero;
   document.querySelector('#calling').textContent = 'Level ' + hero.level + ' ' + hero.class;
-  const progress = hero.ashwood_progress;
-  const quest = progress == null ? 'Available' : progress === 4 ? 'Reward claimed'
-    : progress === 3 ? 'Ready to claim' : progress + '/3 stalkers';
   stats.replaceChildren();
   for (const [label, value] of Object.entries({
-    XP: hero.xp, Gold: hero.gold, Gear: '+' + hero.gear, 'Ashwood quest': quest,
+    XP: hero.xp, Gold: hero.gold, Gear: '+' + hero.gear,
   })) {
     const group = document.createElement('div');
     const term = document.createElement('dt');
@@ -27,6 +52,7 @@ function renderHero(hero) {
     group.append(term, detail);
     stats.append(group);
   }
+  renderQuest(hero.ashwood_progress);
   sheet.hidden = false;
 }
 
@@ -34,6 +60,12 @@ let renderVersion = 0;
 async function refresh(session) {
   const version = ++renderVersion;
   sheet.hidden = true;
+  const journal = document.querySelector('#journal');
+  if (journal) {
+    journal.hidden = true;
+    for (const id of ['quest-state', 'quest-count', 'quest-next', 'quest-command']) document.getElementById(id).textContent = '';
+    document.getElementById('quest-progress').value = 0;
+  }
   stats.replaceChildren();
   document.querySelector('#hero-name').textContent = '';
   document.querySelector('#calling').textContent = '';
