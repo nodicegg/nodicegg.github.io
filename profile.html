@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Hero · Emberwolf</title>
+  <link rel="stylesheet" href="./style.css?v=emberforms">
+  <link rel="stylesheet" href="./profile.css">
+  <script type="module" src="./profile.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./">Emberwolf</a>
+    <nav aria-label="Main"><a href="./">Home</a><a href="./leaderboards.html">Leaderboards</a><a href="./profile.html" aria-current="page">My Hero</a></nav>
+  </header>
+  <main class="shell profile">
+    <h1>My Hero</h1>
+    <p id="status" class="lede" role="status">Checking your Discord session…</p>
+    <button id="signin" class="play" hidden>Sign in with Discord</button>
+    <div class="hero-sheet" id="sheet" hidden>
+      <h2 id="hero-name"></h2>
+      <p id="calling" class="kicker"></p>
+      <dl id="stats"></dl>
+    </div>
+    <button id="signout" class="text-link" hidden>Sign out</button>
+    <noscript>Enable JavaScript to sign in and view your hero.</noscript>
+  </main>
+</body>
+</html>
