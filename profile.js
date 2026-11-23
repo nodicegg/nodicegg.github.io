@@ -1,4 +1,4 @@
-import { clearEquipment, rarityColor, renderEquipment } from './profile-equipment.js?v=rarity';
+import { clearEquipment, rarityColor, renderEquipment } from './profile-equipment.js?v=weapon-bonuses';
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/+esm';
 
 const client = createClient('https://krkoydzjzrutdgxhaplk.supabase.co', 'sb_publishable_CRUhmi4nlIgzeYsjaPtCYw_dGJpApTH', {
