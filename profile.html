@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>My Hero · Emberwolf</title>
   <link rel="stylesheet" href="./style.css?v=emberforms">
-  <link rel="stylesheet" href="./profile.css?v=resources">
-  <script type="module" src="./profile.js?v=resources"></script>
+  <link rel="stylesheet" href="./profile.css?v=journal-polish">
+  <script type="module" src="./profile.js?v=journal-polish"></script>
 </head>
 <body>
   <header class="site-header">
@@ -28,21 +28,34 @@
         <h3>Character stats</h3>
         <dl id="stats"></dl>
       </aside>
-      <section class="quest-journal" id="journal" aria-labelledby="quest-title" hidden>
-        <h3>Quest journal</h3>
-        <label for="quest-filter">Show quests</label>
-        <select id="quest-filter"><option value="open">Available and in progress</option><option value="completed">Completed</option></select>
-        <p id="quest-empty" role="status" hidden></p>
-        <div id="quest-entry">
-        <h3 id="quest-title">Trouble in the Ashwood</h3>
-        <p id="quest-state"></p>
-        <label for="quest-progress">Ashwood Stalkers defeated <strong id="quest-count"></strong></label>
-        <progress id="quest-progress" max="3" value="0"></progress>
-        <p>Reward · 20 XP and 15 gold</p>
-        <p id="quest-next"></p>
-        <code id="quest-command"></code>
-        <a class="text-link quest-discord" href="https://discord.com/channels/1289753596233126010">Open NoDiceGG in Discord</a>
+      <section class="quest-journal" id="journal" aria-labelledby="journal-title" hidden>
+        <div class="journal-header">
+          <h3 id="journal-title">Quest Journal</h3>
+          <fieldset class="journal-filters" id="quest-filter" aria-label="Filter quests">
+            <label><input type="radio" name="quest-view" value="open" checked><span>Open</span></label>
+            <label><input type="radio" name="quest-view" value="completed"><span>Completed</span></label>
+          </fieldset>
         </div>
+        <p id="quest-empty" role="status" hidden></p>
+        <article id="quest-entry" aria-labelledby="quest-title">
+          <div class="quest-heading">
+            <h4 id="quest-title">Trouble in the Ashwood</h4>
+            <p id="quest-state"></p>
+          </div>
+          <p class="quest-brief">The Ashgate quartermaster needs the supply road cleared of three Ashwood Stalkers.</p>
+          <div class="quest-objective">
+            <label for="quest-progress">Ashwood Stalkers defeated</label>
+            <strong id="quest-count"></strong>
+            <progress id="quest-progress" max="3" value="0"></progress>
+          </div>
+          <p class="quest-reward"><span>Reward</span><strong>20 XP</strong><strong>15 gold</strong></p>
+          <div class="quest-next-panel">
+            <h5>Next in Discord</h5>
+            <p id="quest-next"></p>
+            <code id="quest-command"></code>
+            <a class="text-link quest-discord" href="https://discord.com/channels/1289753596233126010">Open NoDiceGG</a>
+          </div>
+        </article>
       </section>
     </div>
     <button id="signout" class="text-link" hidden>Sign out</button>
