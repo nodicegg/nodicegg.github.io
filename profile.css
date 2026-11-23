@@ -18,3 +18,33 @@
 .quest-journal label { display: flex; justify-content: space-between; gap: .6rem; }
 .quest-journal progress { width: 100%; height: .8rem; margin-top: .5rem; accent-color: var(--ember); }
 .quest-discord { display: block; width: fit-content; margin-top: 1rem; }
+
+.hero-sheet:not([hidden]) {
+  display: grid;
+  grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+}
+.hero-sidebar {
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: .35rem;
+  background: #1e1511;
+  overflow-wrap: anywhere;
+}
+.hero-sidebar h2 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+.hero-sidebar h3 { margin-block: 1.2rem .65rem; }
+.hero-sidebar dl { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+.hero-sidebar dl div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .5rem;
+  padding: .55rem 0;
+}
+.hero-sidebar dd { margin: 0; text-align: right; }
+.hero-sidebar .hero-resources dd { color: var(--muted); font-weight: 400; }
+.hero-sheet .quest-journal { margin-top: 0; }
+@media (max-width: 680px) {
+  .hero-sheet:not([hidden]) { grid-template-columns: minmax(0, 1fr); }
+}
