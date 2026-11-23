@@ -70,3 +70,20 @@
 .quest-next-panel h5 { font-size: .95rem; margin: 0; }
 #quest-next { margin: .4rem 0 .65rem; }
 .quest-discord { display: block; width: fit-content; margin-top: .75rem; }
+
+.profile-main { min-width: 0; }
+.profile-views { display:flex; flex-wrap:wrap; gap:.45rem; margin-bottom:1.1rem; }
+.profile-views button { background:var(--panel); color:var(--muted); border:1px solid var(--line); border-radius:.55rem; padding:.6rem .8rem; font-size:.9rem; }
+.profile-views button[aria-pressed="true"] { color:var(--ink); background:#414881; }
+#gear-view > p, .inventory-meta { color:var(--muted); line-height:1.5; }
+#equipped-list { grid-template-columns:repeat(auto-fit, minmax(min(100%, 9rem),1fr)); gap:.55rem; }
+#equipped-list .inventory-row, #backpack-list .inventory-row { padding:.7rem .85rem; background:var(--panel); border:1px solid var(--line); border-radius:.5rem; }
+#equipped-list dd, .inventory-row strong { overflow-wrap:anywhere; }
+#equipped-list dd:not(.inventory-meta) { color:var(--ink); }
+#equipped-list .inventory-meta, .inventory-meta, .inventory-comparison { margin:.35rem 0 0; font-size:.875rem; }
+#equipped-list .inventory-meta { color:var(--muted); font-weight:400; }
+.backpack-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.5rem; margin-block:1.25rem .7rem; }
+.backpack-heading h4 { margin:0; }
+.backpack-heading input { accent-color:var(--accent); }
+#backpack-list { display:grid; gap:.5rem; }
+.inventory-comparison { color:var(--accent); }
