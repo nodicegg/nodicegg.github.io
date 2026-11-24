@@ -7,9 +7,45 @@
 <meta name="theme-color" content="#121017">
 <title>SimplyDice - Projects by Dice</title>
 <style>
-:root{color-scheme:dark;--bg:#121017;--panel:#1b1722;--paper:#f8f3ff;--muted:#c3b9cc;--line:#3b3247;--violet:#cbabff;--orange:#ffae77}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 85% 0%,#332048 0%,transparent 45%),var(--bg);color:var(--paper);font:1rem/1.65 system-ui,sans-serif}a{color:inherit}a:focus-visible{outline:2px solid var(--orange);outline-offset:5px}.shell{width:min(1120px,calc(100% - 3rem));margin:auto}
-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.6rem 0;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;font-weight:800}.mark{display:grid;place-items:center;width:2rem;height:2rem;border:1px solid var(--violet);border-radius:.45rem;color:var(--violet);font-size:1.55rem;line-height:1}nav{display:flex;flex-wrap:wrap;gap:.45rem 1rem}nav a{color:var(--muted);text-underline-offset:.3em}.hero{padding:clamp(4rem,10vw,8rem) 0 4rem}.hero h1{font-size:clamp(3.3rem,12vw,9rem);letter-spacing:-.09em;line-height:.95;margin:0}.hero h1 span{color:var(--violet)}.hero p{color:var(--muted);font-size:clamp(1.1rem,2.2vw,1.45rem);max-width:34em;margin:1.6rem 0 0}.projects{padding:0 0 5rem}.projects h2{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.04em;margin:0 0 1rem}.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem}.card{--accent:var(--orange);background:var(--panel);border:1px solid var(--line);border-radius:1rem;overflow:hidden}.card:nth-child(2){--accent:var(--violet)}.card:nth-child(3){--accent:#b8e5a6}.stripe{height:.36rem;background:var(--accent)}.content{padding:clamp(1.4rem,4vw,2.5rem);max-width:55rem}.type{color:var(--accent);font-size:.78rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;margin:0}.card h3{font-size:1.5rem;line-height:1.15;margin:.65rem 0 .85rem}.card a{display:inline-block;margin-top:1rem;color:var(--accent);text-underline-offset:.25em}.card .content>p:not(.type){color:var(--muted);margin:0}.card em{color:var(--paper)}footer{border-top:1px solid var(--line);color:var(--muted);padding:1.5rem 0 2rem}@media(max-width:760px){header{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.projects{padding-bottom:3rem}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+:root{color-scheme:dark;--bg:#110e17;--text:#fff7ed;--muted:#c9bdce;--line:#493955;--orange:#ff9f63;--lavender:#c9aaff}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 78% 0%,#30203d,transparent 48rem),var(--bg);color:var(--text);font:1rem/1.6 system-ui,sans-serif}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--orange);outline-offset:5px}
+.shell{width:min(1120px,calc(100% - 2.5rem));margin:auto}
+header,footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem 0}
+header{border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;font-weight:800}
+.mark{color:var(--orange);font-size:1.5rem}
+nav{display:flex;flex-wrap:wrap;gap:.35rem 1.2rem}
+nav a,footer{color:var(--muted)}
+nav a{text-decoration:none}
+nav a:hover{color:var(--text);text-decoration:underline}
+.hero{isolation:isolate;position:relative;display:grid;grid-template-columns:minmax(0,1fr) .62fr;align-items:center;gap:2rem;padding:clamp(4rem,10vw,8rem) 0}
+.hero h1{font-size:clamp(3rem,10vw,8.5rem);letter-spacing:-.085em;line-height:1;margin:0}
+.hero h1 span{color:var(--orange)}
+.hero p{color:var(--muted);font-size:clamp(1.15rem,2.5vw,1.6rem);margin:1rem 0 1.65rem}
+.hero-link,.card a{font-weight:750;text-underline-offset:.28em}
+.hero-link{color:var(--lavender)}
+.dice-art{justify-self:center;width:min(72%,235px);aspect-ratio:1;display:grid;grid-template-columns:repeat(3,1fr);padding:clamp(1.25rem,3vw,2.25rem);border:1px solid #946ac4;border-radius:24%;background:linear-gradient(145deg,#573677,#22142f);box-shadow:12px 15px 0 #190f25,13px 16px 0 #684987,0 0 75px #874ade60;transform:rotate(-16deg)}
+.dice-art i{width:70%;aspect-ratio:1;align-self:center;justify-self:center;background:var(--orange);border-radius:50%;box-shadow:0 0 15px #ff9f6380}
+.dice-art i:nth-child(1){grid-area:1/1}.dice-art i:nth-child(2){grid-area:1/3}.dice-art i:nth-child(3){grid-area:2/2}.dice-art i:nth-child(4){grid-area:3/1}.dice-art i:nth-child(5){grid-area:3/3}
+.projects{padding:0 0 4rem}
+.projects h2{font-size:2rem;letter-spacing:-.04em;margin:0 0 1rem}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.card{--accent:#ffad77;scroll-margin:1rem;background:#1b1524;border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:.8rem}
+.card:first-child{grid-column:1/-1;background:linear-gradient(115deg,#2b1b27,#1b1524 70%)}
+.card:nth-child(2){--accent:#bda5ff}
+.card:nth-child(3){--accent:#b8e5a6}
+.card:target{outline:2px solid var(--accent);outline-offset:4px}
+.stripe{display:none}
+.content{padding:clamp(1.3rem,4vw,2.4rem);max-width:52rem}
+.type{margin:0;color:var(--accent);font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;font-weight:800}
+.card h3{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.05;letter-spacing:-.045em;margin:.65rem 0}
+.card .content>p:not(.type){color:var(--muted);margin:0}
+.card a{display:inline-block;color:var(--accent);margin-top:1rem}
+footer{border-top:1px solid var(--line)}
+@media(max-width:650px){header{align-items:flex-start;flex-direction:column}.hero{grid-template-columns:1fr}.dice-art{display:none}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -17,8 +53,12 @@ header{display:flex;align-items:center;justify-content:space-between;gap:1rem;pa
 <header><a class="brand" href="#top"><span class="mark" aria-hidden="true">&#9858;</span>SimplyDice</a><nav aria-label="Main"><a href="#emberwolf">Emberwolf</a><a href="#nexus-os">Nexus OS</a><a href="#kingpin">Kingpin</a></nav></header>
 <main id="top">
 <section class="hero" aria-labelledby="title">
+<div class="hero-copy">
 <h1 id="title">Simply<span>Dice</span></h1>
-<p>I'm Dice. I'm building a dark fantasy MMO, building tools for Discord communities, and developing a mod for <em>Schedule I</em>.</p>
+<p>I roll with good ideas and build to see what happens.</p>
+<a class="hero-link" href="#projects">Explore my projects <span aria-hidden="true">&darr;</span></a>
+</div>
+<span class="dice-art" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
 </section>
 <section class="projects" id="projects" aria-labelledby="projects-title">
 <h2 id="projects-title">Projects</h2>
