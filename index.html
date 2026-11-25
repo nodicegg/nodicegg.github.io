@@ -4,39 +4,39 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="SimplyDice is Dice's personal project portfolio, featuring Emberwolf, Nexus OS, and Kingpin.">
-<meta name="theme-color" content="#121017">
+<meta name="theme-color" content="#0b0806">
 <title>SimplyDice - Projects by Dice</title>
 <style>
-:root{color-scheme:dark;--bg:#110e17;--text:#fff7ed;--muted:#c9bdce;--line:#493955;--orange:#ff9f63;--lavender:#c9aaff}
+:root{color-scheme:dark;--bg:#0b0806;--text:#fff1da;--muted:#cbb4a0;--line:#513521;--amber:#ffb654;--gold:#ffd089;--panel:#19100b}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at 78% 0%,#30203d,transparent 48rem),var(--bg);color:var(--text);font:1rem/1.6 system-ui,sans-serif}
+body{margin:0;background:radial-gradient(ellipse at 13% 0%,#4a260e,transparent 44rem),var(--bg);color:var(--text);font:1rem/1.6 system-ui,sans-serif}
 a{color:inherit}
-a:focus-visible{outline:2px solid var(--orange);outline-offset:5px}
+a:focus-visible{outline:2px solid var(--amber);outline-offset:5px}
 .shell{width:min(1120px,calc(100% - 2.5rem));margin:auto}
 header,footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem 0}
 header{border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;font-weight:800}
-.mark{color:var(--orange);font-size:1.5rem}
+.mark{color:var(--amber);font-size:1.5rem}
 nav{display:flex;flex-wrap:wrap;gap:.35rem 1.2rem}
 nav a,footer{color:var(--muted)}
 nav a{text-decoration:none}
 nav a:hover{color:var(--text);text-decoration:underline}
 .hero{isolation:isolate;position:relative;display:grid;grid-template-columns:minmax(0,1fr) .62fr;align-items:center;gap:2rem;padding:clamp(4rem,10vw,8rem) 0}
 .hero h1{font-size:clamp(3rem,10vw,8.5rem);letter-spacing:-.085em;line-height:1;margin:0}
-.hero h1 span{color:var(--orange)}
+.hero h1 span{color:var(--amber)}
 .hero p{color:var(--muted);font-size:clamp(1.15rem,2.5vw,1.6rem);margin:1rem 0 1.65rem}
 .hero-link,.card a{font-weight:750;text-underline-offset:.28em}
-.hero-link{color:var(--lavender)}
-.dice-art{justify-self:center;width:min(72%,235px);aspect-ratio:1;display:grid;grid-template-columns:repeat(3,1fr);padding:clamp(1.25rem,3vw,2.25rem);border:1px solid #946ac4;border-radius:24%;background:linear-gradient(145deg,#573677,#22142f);box-shadow:12px 15px 0 #190f25,13px 16px 0 #684987,0 0 75px #874ade60;transform:rotate(-16deg)}
-.dice-art i{width:70%;aspect-ratio:1;align-self:center;justify-self:center;background:var(--orange);border-radius:50%;box-shadow:0 0 15px #ff9f6380}
+.hero-link{color:var(--gold)}
+.dice-art{justify-self:center;width:min(72%,235px);aspect-ratio:1;display:grid;grid-template-columns:repeat(3,1fr);padding:clamp(1.25rem,3vw,2.25rem);border:1px solid #ffcf80;border-radius:24%;background:linear-gradient(145deg,#fff1ce,#e5aa61 67%,#b76932);box-shadow:12px 15px 0 #633314,13px 16px 0 #a3602e,0 0 75px #da761f55;transform:rotate(-16deg)}
+.dice-art i{width:70%;aspect-ratio:1;align-self:center;justify-self:center;background:#2a170d;border-radius:50%;box-shadow:inset 0 2px 5px #100906,0 1px 1px #ffe5b5}
 .dice-art i:nth-child(1){grid-area:1/1}.dice-art i:nth-child(2){grid-area:1/3}.dice-art i:nth-child(3){grid-area:2/2}.dice-art i:nth-child(4){grid-area:3/1}.dice-art i:nth-child(5){grid-area:3/3}
 .projects{padding:0 0 4rem}
 .projects h2{font-size:2rem;letter-spacing:-.04em;margin:0 0 1rem}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
-.card{--accent:#ffad77;scroll-margin:1rem;background:#1b1524;border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:.8rem}
-.card:first-child{grid-column:1/-1;background:linear-gradient(115deg,#2b1b27,#1b1524 70%)}
-.card:nth-child(2){--accent:#bda5ff}
-.card:nth-child(3){--accent:#b8e5a6}
+.card{--accent:var(--amber);scroll-margin:1rem;background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:.8rem}
+.card:first-child{grid-column:1/-1;background:linear-gradient(115deg,#321d11,var(--panel) 70%)}
+.card:nth-child(2){--accent:var(--gold)}
+.card:nth-child(3){--accent:#e7a16a}
 .card:target{outline:2px solid var(--accent);outline-offset:4px}
 .stripe{display:none}
 .content{padding:clamp(1.3rem,4vw,2.4rem);max-width:52rem}
