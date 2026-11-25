@@ -9,7 +9,7 @@
 <style>
 :root{color-scheme:dark;--bg:#0b0806;--text:#fff1da;--muted:#cbb4a0;--line:#513521;--amber:#ffb654;--gold:#ffd089;--panel:#19100b}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at 13% 0%,#4a260e,transparent 44rem),repeating-linear-gradient(105deg,#d78c4a06 0 1px,transparent 1px 9px),var(--bg);color:var(--text);font:1rem/1.6 system-ui,sans-serif}
+body{margin:0;background:radial-gradient(ellipse at 13% 0%,#38200f,transparent 40rem),var(--bg);color:var(--text);font:1rem/1.6 system-ui,sans-serif}
 a{color:inherit}
 a:focus-visible{outline:2px solid var(--amber);outline-offset:5px}
 .shell{width:min(1120px,calc(100% - 2.5rem));margin:auto}
@@ -21,19 +21,20 @@ nav{display:flex;flex-wrap:wrap;gap:.35rem 1.2rem}
 nav a,footer{color:var(--muted)}
 nav a{text-decoration:none}
 nav a:hover{color:var(--text);text-decoration:underline}
-.hero{isolation:isolate;position:relative;display:grid;grid-template-columns:minmax(0,1fr) .62fr;align-items:center;gap:2rem;padding:clamp(4rem,10vw,8rem) 0}
+.hero{isolation:isolate;position:relative;display:grid;align-items:center;min-height:clamp(32rem,49vw,41rem);padding:clamp(5rem,11vw,9rem) 0}
+.hero-copy{max-width:44rem;text-shadow:0 2px 9px #0b0806,0 1px 2px #0b0806}
 .hero h1{font-size:clamp(3rem,10vw,8.5rem);letter-spacing:-.085em;line-height:1;margin:0}
 .hero h1 span{color:var(--amber)}
-.hero p{color:var(--muted);font-size:clamp(1.15rem,2.5vw,1.6rem);margin:1rem 0 1.65rem}
+.hero p{max-width:34rem;color:#e0c9b0;font-size:clamp(1.15rem,2.5vw,1.6rem);margin:1rem 0 1.65rem}
 .hero-link,.card a{font-weight:750;text-underline-offset:.28em}
 .hero-link{color:var(--gold)}
-.workbench{display:block;width:100%;height:auto;border:1px solid #704829;border-radius:.4rem;box-shadow:0 18px 44px #0009,0 0 45px #c270201c}
-.projects{padding:0 0 4rem}
+.workbench{position:absolute;z-index:-1;inset:0 min(0px,calc((1120px - 100vw) / 2 + 20px)) 0 auto;width:min(77vw,58rem);height:100%;object-fit:cover;object-position:59% 59%;mask-image:linear-gradient(90deg,transparent,#000 46%),linear-gradient(180deg,transparent,#000 12%,#000 80%,transparent);mask-composite:intersect}
+.projects{position:relative;padding:0 0 4rem}
 .projects h2{display:flex;align-items:center;gap:1rem;font-size:2rem;letter-spacing:-.04em;margin:0 0 1rem}
 .projects h2::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,#7b4e2a,var(--line))}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
-.card{--accent:var(--amber);scroll-margin:1rem;background:linear-gradient(155deg,#24160e,var(--panel) 76%);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:.4rem;box-shadow:0 5px 18px #0003}
-.card:first-child{grid-column:1/-1;background:linear-gradient(115deg,#321d11,var(--panel) 70%)}
+.card{--accent:var(--amber);scroll-margin:1rem;background:radial-gradient(ellipse at 8% 0%,#382215,transparent 85%),var(--panel);border:1px solid var(--line);border-top:2px solid var(--accent);border-radius:.25rem;box-shadow:0 8px 24px #0005,inset 0 0 0 4px #0b080635}
+.card:first-child{grid-column:1/-1;background:radial-gradient(ellipse at 5% 0%,#4a2b17,transparent 78%),var(--panel)}
 .card:nth-child(2){--accent:var(--gold)}
 .card:nth-child(3){--accent:#e7a16a}
 .card:target{outline:2px solid var(--accent);outline-offset:4px}
@@ -44,7 +45,7 @@ nav a:hover{color:var(--text);text-decoration:underline}
 .card .content>p:not(.type){color:var(--muted);margin:0}
 .card a{display:inline-block;color:var(--accent);margin-top:1rem}
 footer{border-top:1px solid var(--line)}
-@media(max-width:650px){header{align-items:flex-start;flex-direction:column}.hero{grid-template-columns:minmax(0,1fr);gap:1.7rem;padding:3.25rem 0}.workbench{max-width:30rem}.grid{grid-template-columns:1fr}}
+@media(max-width:650px){header{align-items:flex-start;flex-direction:column}.hero{min-height:0;grid-template-columns:minmax(0,1fr);gap:.75rem;padding:3.25rem 0 1.25rem}.workbench{position:relative;inset:auto;width:100%;height:auto;mask-image:linear-gradient(180deg,transparent,#000 10%,#000 85%,transparent);mask-composite:add}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
